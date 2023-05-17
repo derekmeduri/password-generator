@@ -8,8 +8,6 @@ function getPasswordOptions() {
     10
   );
 
-  // need more code below
-
   // Conditional statement to check if password length is a number. Prompts end if this evaluates false
   if (Number.isNaN(length)) {
     alert("Password length must be provided as a number");
@@ -17,22 +15,16 @@ function getPasswordOptions() {
   }
 
   // Variable to store boolean regarding the inclusion of special characters
-  var confirmSpecialChar = confirm(
+  var hasSpecialCharacters = confirm(
     "Click OK to confirm including special characters."
   );
-  var confirmUpperCase = confirm(
-    "Click OK to confirm including at least one Upper Case letter."
-  );
-  var confirmLowerCase = confirm(
-    "Click OK to confirm including at least one Lower Case letter."
-  );
-  var confirmNumber = confirm(
-    "Click OK to confirm including at least one number."
-  );
-
+  var hasUpperCase = confirm("Click OK to confirm including Upper Case.");
+  var hasLowerCase = confirm("Click OK to confirm including Lower Case.");
+  var hasNumbers = confirm("Click OK to confirm including Numbers.");
   // Object to store user input
   var passwordOptions = {
     length: length,
+
     // add more properties and values here
   };
 
@@ -53,39 +45,22 @@ function generatePassword() {
   // Variable to store password as it's being concatenated
   var result = [];
 
-  // Array to store types of characters to include in password
-
-  //copy arrays created in other vs code file here.
-  var possibleCharacters = [];
-  var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"];
-  var lowerCase = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
+  // Array of character types
+  var specialCharacters = [
+    "!",
+    "@",
+    "#",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "(",
+    ")",
+    "?",
+    "~",
   ];
+  var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   var upperCase = [
     "A",
     "B",
@@ -114,7 +89,36 @@ function generatePassword() {
     "Y",
     "Z",
   ];
-  var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var lowerCase = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
+  // Array to store types of characters to include in password
+  var possibleCharacters = [];
 
   // Array to contain one of each type of chosen character to ensure each will be used
   var guaranteedCharacters = [];
@@ -128,7 +132,18 @@ function generatePassword() {
     possibleCharacters = possibleCharacters.concat(specialCharacters);
     guaranteedCharacters.push(getRandom(specialCharacters));
   }
-
+  if (options.hasUpperCase) {
+    possibleCharacters = possibleCharacters.concat(upperCase);
+    guaranteedCharacters.push(getRandom(upperCase));
+  }
+  if (options.hasLowerCase) {
+    possibleCharacters = possibleCharacters.concat(lowerCase);
+    guaranteedCharacters.push(getRandom(lowerCase));
+  }
+  if (options.hasNumbers) {
+    possibleCharacters = possibleCharacters.concat(numbers);
+    guaranteedCharacters.push(getRandom(numbers));
+  }
   // Transform the result into a string and pass into writePassword
   return result.join("");
 }
