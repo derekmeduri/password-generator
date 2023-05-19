@@ -130,7 +130,7 @@ function getRandom(arr) {
 // Function to generate password with user input
 function generatePassword() {
   var options = getPasswordOptions();
-  // Variable to store password as it's being concatenated
+  // Variable to store password
   var result = [];
 
   // Array of character types
