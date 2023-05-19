@@ -8,7 +8,7 @@ Received starter code from: OSU-VIRT-FSF-PT-04-2023-U-LOLC
 Received assitance in office hours from TA Jeremy Xu
 Received one on one help in tutoring session with Samuel Cordova
 
-deployed link:
+deployed link: https://derekmeduri.github.io/password-generator/
 
 ![Preview of application](images/createpassword.png)
 ![Preview of prompt](images/prompt.png)
