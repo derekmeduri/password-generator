@@ -10,4 +10,6 @@ Received one on one help in tutoring session with Samuel Cordova
 
 deployed link:
 
-screenshots of application:
+![Preview of application](images/createpassword.png)
+![Preview of prompt](images/prompt.png)
+![Preview of generated password](images/result.png)
