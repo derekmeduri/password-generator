@@ -233,7 +233,7 @@ function generatePassword() {
   // console.log(possibleCharacters);
   // console.log(guaranteedCharacters);
 
-  // two for loops
+  // add two for loops here - Office hours with TA Jeremy Xu
   //one passing user input - possible
   for (var i = 0; i < options.length; i++) {
     passwordChar = getRandom(possibleCharacters);
