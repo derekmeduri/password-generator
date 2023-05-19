@@ -85,7 +85,8 @@ function getPasswordOptions() {
   } else if (!length) {
     alert("This needs a value");
   } else if (length < 8 || length > 128) {
-    length = parseInt(prompt("Please choose between 8 and 128 characters."));
+    // length = parseInt(prompt("Please choose between 8 and 128 characters."));
+    return null;
   }
 
   // Variable to store boolean regarding the inclusion of special characters
@@ -105,6 +106,7 @@ function getPasswordOptions() {
   if (!hasSpecialCharacters && !hasUpperCase && !hasLowerCase && !hasNumbers) {
     alert("Please select password criteria to continue.");
   }
+
   // Object to store user input
   var passwordOptions = {
     length: length,
@@ -236,16 +238,16 @@ function generatePassword() {
   // add two for loops here - Office hours with TA Jeremy Xu
   //one passing user input - possible
   for (var i = 0; i < options.length; i++) {
-    passwordChar = getRandom(possibleCharacters);
+    var passwordChar = getRandom(possibleCharacters);
     // console.log(passwordChar);
     result.push(passwordChar);
   }
   //console.log("this is text");
   //one that passes through guaranteed char.
   for (var i = 0; i < guaranteedCharacters.length; i++) {
-    guarnteedChar = getRandom(guaranteedCharacters);
+    //var guaranteedChar = (guaranteedCharacters);
     // console.log(guarnteedChar);
-    result.push(guarnteedChar);
+    result[i] = guaranteedCharacters[i];
   }
   // Transform the result into a string and pass into writePassword
   console.log(result);
