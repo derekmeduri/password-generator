@@ -2,30 +2,116 @@
 var generateBtn = document.querySelector("#generate");
 
 function getPasswordOptions() {
+  var specialCharacters = [
+    "!",
+    "@",
+    "#",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "(",
+    ")",
+    "?",
+    "~",
+  ];
+  var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  var upperCase = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+  var lowerCase = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
   // Variable to store length of password from user input
   var length = parseInt(
-    prompt("How many characters would you like your password to contain?"),
-    10
+    prompt("How many characters would you like your password to contain?")
   );
 
   // Conditional statement to check if password length is a number. Prompts end if this evaluates false
   if (Number.isNaN(length)) {
     alert("Password length must be provided as a number");
     return null;
+  } else if (!length) {
+    alert("This needs a value");
+  } else if (length < 8 || length > 128) {
+    length = parseInt(prompt("Please choose between 8 and 128 characters."));
   }
 
   // Variable to store boolean regarding the inclusion of special characters
   var hasSpecialCharacters = confirm(
-    "Click OK to confirm including special characters."
+    "Click OK to confirm including Special Characters."
   );
-  var hasUpperCase = confirm("Click OK to confirm including Upper Case.");
-  var hasLowerCase = confirm("Click OK to confirm including Lower Case.");
-  var hasNumbers = confirm("Click OK to confirm including Numbers.");
+  var hasUpperCase = confirm(
+    "Click OK to confirm including at least one Upper Case letter."
+  );
+  var hasLowerCase = confirm(
+    "Click OK to confirm including at least one Lower Case letter."
+  );
+  var hasNumbers = confirm(
+    "Click OK to confirm including at least one Number."
+  );
+  //conditional statement if user selects cancel for the selections
+  if (!hasSpecialCharacters && !hasUpperCase && !hasLowerCase && !hasNumbers) {
+    alert("Please select password criteria to continue.");
+  }
   // Object to store user input
   var passwordOptions = {
     length: length,
-
-    // add more properties and values here
+    hasLowerCase: hasLowerCase,
+    hasNumbers: hasNumbers,
+    hasUpperCase: hasUpperCase,
+    hasSpecialCharacters: hasSpecialCharacters,
   };
 
   return passwordOptions;
@@ -35,7 +121,7 @@ function getPasswordOptions() {
 function getRandom(arr) {
   var randIndex = Math.floor(Math.random() * arr.length);
   var randElement = arr[randIndex];
-
+  console.log(randElement);
   return randElement;
 }
 
@@ -60,7 +146,7 @@ function generatePassword() {
     "?",
     "~",
   ];
-  var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   var upperCase = [
     "A",
     "B",
@@ -142,9 +228,27 @@ function generatePassword() {
   }
   if (options.hasNumbers) {
     possibleCharacters = possibleCharacters.concat(numbers);
-    guaranteedCharacters.push(getRandom(numbers));
+    guaranteedCharacters.push(getRandom(lowerCase));
+  }
+  // console.log(possibleCharacters);
+  // console.log(guaranteedCharacters);
+
+  // two for loops
+  //one passing user input - possible
+  for (var i = 0; i < options.length; i++) {
+    passwordChar = getRandom(possibleCharacters);
+    // console.log(passwordChar);
+    result.push(passwordChar);
+  }
+  //console.log("this is text");
+  //one that passes through guaranteed char.
+  for (var i = 0; i < guaranteedCharacters.length; i++) {
+    guarnteedChar = getRandom(guaranteedCharacters);
+    // console.log(guarnteedChar);
+    result.push(guarnteedChar);
   }
   // Transform the result into a string and pass into writePassword
+  console.log(result);
   return result.join("");
 }
 
