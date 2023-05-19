@@ -106,7 +106,7 @@ function getPasswordOptions() {
   if (!hasSpecialCharacters && !hasUpperCase && !hasLowerCase && !hasNumbers) {
     alert("Please select password criteria to continue.");
   }
-
+  //office hours with TA jeremy xu
   // Object to store user input
   var passwordOptions = {
     length: length,
@@ -242,7 +242,7 @@ function generatePassword() {
     // console.log(passwordChar);
     result.push(passwordChar);
   }
-  //console.log("this is text");
+  //tutoring session with sam cordova
   //one that passes through guaranteed char.
   for (var i = 0; i < guaranteedCharacters.length; i++) {
     //var guaranteedChar = (guaranteedCharacters);
